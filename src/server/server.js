@@ -25,23 +25,23 @@ app.use(
 
 authenticationRoute(app);
 
-if (process.env.NODE_ENV == 'production') {
-    app.use(express.static(path.resolve(__dirname, '../../dist')));
+if (process.env.NODE_ENV == `production`) {
+    app.use(express.static(path.resolve(__dirname, `../../dist`)));
     app.get('/*',(req,res=>{
       res.sendFile(path.resolve('index.html'));
     }));
 }
 
-if(process.env.NODE_ENV == 'production') {
-    app.use(express.static(path.resolve(__dirname, '../../dist')));
-    app.get('/*',(req,res)=>{
-        res.sendFile(path.resolve('index.html'));
-    });
-}
+// if(process.env.NODE_ENV == 'production') {
+//     app.use(express.static(path.resolve(__dirname, '../../dist')));
+//     app.get('/*',(req,res)=>{
+//         res.sendFile(path.resolve('index.html'));
+//     });
+// }
 
 export const addNewTask = async task=>{
    let db = await connectDB();
-   let collection = db.collection('tasks');
+   let collection = db.collection(`tasks`);
    await collection.insertOne(task); 
 }; 
 
